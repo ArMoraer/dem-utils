@@ -33,7 +33,7 @@ You can use `python dem_generator.py -h` to get a full list of possible paramete
 The generation of a DEM relies on multiple and somewhat advanced parameters. Preset parameters can be used with the `--preset <mode>` option in order to avoid manually tuning these parameters. The `--preset` option currently supports two modes: `archipelago` and `mountainous_island`. See examples below:
 
 
-![Example of archipelago mode](/img/archipelago.png "Example of archipelago mode")
+![Example of archipelago mode](/img/archipelago-example.png "Example of archipelago mode")
 _Example of the output of `python dem_generator.py /path/to/dem.tif --width 1500 --preset archipelago`_
 
 ![Example of mountainous island mode](/img/mountainous-island-example.png "Example of mountainous island mode")
