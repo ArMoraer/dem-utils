@@ -53,26 +53,31 @@ Warning: when increased, the `scale`, `detailslevel`, `spread` and `roughness` o
 Here a few examples of the role of some parameters on the result:
 
 * scale:
+
 | ![Example of random DEM with scale = 10](/img/waterratio_0.6-scale_10.png "Scale = 10") | ![Example of random DEM with scale = 15](/img/waterratio_0.6-scale_15.png "Scale = 15") | ![Example of random DEM with scale = 20](/img/waterratio_0.6-scale_20.png "Scale = 20") |
 | :---: | :---: | :---: |
 | `--scale 10` | `--scale 15` | `--scale 20` (default) |
 
 * details level:
+
 | ![Example of random DEM with detailslevel = 1](/img/detailslevel_1.png "detailslevel = 1") | ![Example of random DEM with detailslevel = 3](/img/detailslevel_3.png "detailslevel = 3") | ![Example of random DEM with detailslevel = 5](/img/detailslevel_5.png "detailslevel = 5") |
 | :---: | :---: | :---: |
 | `--detailslevel 1` | `--detailslevel 3` (default) | `--detailslevel 5` |
 
 * spread:
+
 | ![Example of random DEM with spread = 1](/img/spread_1.png "Spread = 1") | ![Example of random DEM with spread = 3](/img/spread_3.png "Spread = 3") | ![Example of random DEM with spread = 5](/img/spread_5.png "Spread = 5") |
 | :---: | :---: | :---: |
 | `--spread 1` | `--spread 3` (default) | `--spread 5` |
 
 * roughness:
+
 | ![Example of random DEM with roughness = 1](/img/roughness_1.png "Roughness = 1") | ![Example of random DEM with roughness = 5](/img/roughness_5.png "Roughness = 5") | ![Example of random DEM with roughness = 8](/img/roughness_8.png "Roughness = 8") |
 | :---: | :---: | :---: |
 | `--roughness 1` | `--roughness 5` (default) | `--roughness 8` |
 
 * directionality:
+
 | ![Example of random DEM with directionality = 1](/img/directionality_1.png "Directionality = 1") | ![Example of random DEM with directionality = 5](/img/directionality_5.png "Directionality = 5") | ![Example of random DEM with directionality = 10](/img/directionality_10.png "Directionality = 10") |
 | :---: | :---: | :---: |
 | `--directionality 1` | `--directionality 5` (default) | `--directionality 10` |
