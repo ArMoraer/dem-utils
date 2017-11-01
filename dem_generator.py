@@ -166,8 +166,8 @@ class DemGenerator():
 		if roughness < 1: roughness = 1
 		if roughness > 10: roughness = 10
 		initMeanAmpl		= roughness * 4
-		meanReducFactor		= float(roughness) / 10 # Range: 0.1-1
-		maxReducFactor		= float(roughness) / 5 # Range: 0.2-2
+		meanReducFactor		= float(roughness) / 12 # Range: 0.083-0.83
+		maxReducFactor		= float(roughness) / 6 # Range: 0.167-1.67
 		nChildren			= int(float(spread) * sqrt(float(roughness))) # Range: 1-15
 
 		# Directionality
@@ -179,8 +179,8 @@ class DemGenerator():
 		# Parameters related to first-level kernels
 		# -----------------------------------------
 		self.nInitKernels 	= nInitKernels # Nbr of first-level kernels
-		self.initLocRatio = initLocRatio # Max relative distance of the centers of the first-level
-										 # kernels to the center of the image (must be <= 0.5)
+		self.initLocRatio 	= initLocRatio # Max relative distance of the centers of the first-level
+										   # kernels to the center of the image (must be <= 0.5)
 		self.initMeanFwhm	= initMeanFwhm # Mean full width at half maximum of first-level kernels.
 								  		   # FWHM follows a triangular distribution centered on this value.
 		self.initMeanAmpl	= initMeanAmpl # Mean amplitude of first-level kernels.
@@ -394,7 +394,7 @@ parser.add_argument("dempath", metavar='path', help='output DEM path')
 parser.add_argument("--verbose", action="store_true", help="increase output verbosity")
 parser.add_argument("--height", type=int, default=1000, help="DEM height (default: 1000)")
 parser.add_argument("--width", type=int, default=1000, help="DEM width (default: 1000)")
-parser.add_argument("--water-ratio", type=float, default=0.5, help="water ratio (default: 0.5)")
+parser.add_argument("--waterratio", type=float, default=0.5, help="water ratio (default: 0.5)")
 parser.add_argument("--island", action="store_true", help="set island mode")
 parser.add_argument("--scale", type=float, default=20, help="features scale (default: 20)")
 parser.add_argument("--detailslevel", type=float, default=3, help="level of features details (default: 3)")
@@ -410,7 +410,7 @@ dem.setParams(
 	verbose=args.verbose,
 	height=args.height,
 	width=args.width,
-	waterRatio=args.water_ratio,
+	waterRatio=args.waterratio,
 	island=args.island,
 	scale=args.scale,
 	detailsLevel=args.detailslevel,
