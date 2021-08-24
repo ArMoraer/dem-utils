@@ -3,7 +3,7 @@
 /***************************************************************************
  DemGenerator
                               Random DEM generator
-                              -------------------
+                              --------------------
         begin                : 2017-08-29
         git sha              : $Format:%H$
         copyright            : (C) 2017 by Alexandre Delahaye
@@ -38,7 +38,7 @@ class GaussianKernel():
 		if not self.size % 2:
 			self.size += 1 # always get an odd size
 		# self.kern = self.getAsArray( offset )
-		# print "fwhm={0}, ampl={1}, orient={2}, ratio={3}".format(fwhm,amplitude,orientation,ratio)
+		# print("fwhm={0}, ampl={1}, orient={2}, ratio={3}".format(fwhm,amplitude,orientation,ratio))
 
 
 	def getAsArray(self, offset):
@@ -221,7 +221,7 @@ class DemGenerator():
 			location = ( \
 				self.demWidth * (.5 + np.random.uniform(-self.initLocRatio, self.initLocRatio)) - gauss.size/2, \
 				self.demHeight * (.5 + np.random.uniform(-self.initLocRatio, self.initLocRatio)) - gauss.size/2 )
-			# print location[0]+(gauss.size/2), location[1]+(gauss.size/2)
+			# print(location[0]+(gauss.size/2), location[1]+(gauss.size/2))
 			self.addKernelToDem( gauss.getAsArray((0,0)), location )
 
 			# Recursive call
@@ -231,13 +231,13 @@ class DemGenerator():
 				sys.stdout.write(('%.0f' % (100*float(i+1)/float(self.nInitKernels))) + '%... ')
 				sys.stdout.flush()
 
-		if self.verbose: print '' # Line break
+		if self.verbose: print('') # Line break
 
 		self.setSeaLevel()
 		#self.correctElevation()
 		self.printStats()
 
-		print 'Done'
+		print('Done')
 
 
 	def generateChildren(self, krn, krnLoc, krnOffset, nChildren):
@@ -273,13 +273,13 @@ class DemGenerator():
 			childKrnLoc = (cnt_x - float(gauss.size)/2.0 + x, \
 				cnt_y - float(gauss.size)/2.0 + y)
 			childOffset = (np.modf(childKrnLoc[0])[0], np.modf(childKrnLoc[1])[0])
-			# print "parent location=", krnLoc
-			# print cnt_x, cnt_y
-			# print childKrnLoc
-			# print "child location=", childKrnLoc
+			# print("parent location=", krnLoc)
+			# print(cnt_x, cnt_y)
+			# print(childKrnLoc)
+			# print("child location=", childKrnLoc)
 
 			# Add child kernel to DEM and create grand-children
-			# print "Adding kernel with offset ", childOffset
+			# print("Adding kernel with offset ", childOffset)
 			self.addKernelToDem( gauss.getAsArray(childOffset), childKrnLoc )
 			self.generateChildren( gauss, childKrnLoc, childOffset, nChildren=self.nChildren )
 
@@ -311,10 +311,10 @@ class DemGenerator():
 			krn_end_y = krn_y - (dem_end_y - self.demHeight + 1)
 			dem_end_y = self.demHeight
 
-		# print dem_start_x, dem_start_y
-		# print dem_end_x, dem_end_y
-		# print krn_start_x, krn_start_y
-		# print krn_end_x, krn_end_y
+		# print(dem_start_x, dem_start_y)
+		# print(dem_end_x, dem_end_y)
+		# print(krn_start_x, krn_start_y)
+		# print(krn_end_x, krn_end_y)
 
 		try:
 			self.dem[dem_start_x:dem_end_x, dem_start_y:dem_end_y] = \
@@ -322,7 +322,7 @@ class DemGenerator():
 				kernArray[krn_start_x:krn_end_x, krn_start_y:krn_end_y]
 		except ValueError:
 			0
-			# print "Error when adding kernel: ", "shape=", np.shape(kernArray), "  UL=", ul
+			# print("Error when adding kernel: ", "shape=", np.shape(kernArray), "  UL=", ul)
 
 
 	def setSeaLevel(self):
@@ -331,7 +331,7 @@ class DemGenerator():
 		"""
 		# Initial water raising
 		zeroLevel = np.percentile(self.dem, 100*self.waterRatio)
-		if self.verbose: print '[Water ratio] Sea level raised by ', zeroLevel
+		if self.verbose: print('[Water ratio] Sea level raised by ', zeroLevel)
 		self.dem -= zeroLevel
 
 		# Island mode: set at least a 1-pixel margin of water
@@ -341,7 +341,7 @@ class DemGenerator():
 				np.max(self.dem[:,0]), \
 				np.max(self.dem[:,-1]))
 			if maxInMargin > 0:
-				if self.verbose: print '[Island mode] Sea level raised by ', maxInMargin
+				if self.verbose: print('[Island mode] Sea level raised by ', maxInMargin)
 				self.dem -= maxInMargin
 	
 
@@ -357,11 +357,11 @@ class DemGenerator():
 		"""
 		Prints DEM statistics
 		"""
-		print 'Water ratio:', float(np.count_nonzero(self.dem < 0)) / float(self.dem.size)
-		print 'Lowest point:', np.min(self.dem)
-		print 'Highest point:', np.max(self.dem)
-		print 'Mean positive elevation:', np.mean(self.dem[self.dem >= 0])
-		print 'Median positive elevation:', np.median(self.dem[self.dem >= 0])
+		print('Water ratio:', float(np.count_nonzero(self.dem < 0)) / float(self.dem.size))
+		print('Lowest point:', np.min(self.dem))
+		print('Highest point:', np.max(self.dem))
+		print('Mean positive elevation:', np.mean(self.dem[self.dem >= 0]))
+		print('Median positive elevation:', np.median(self.dem[self.dem >= 0]))
 
 
 
@@ -371,7 +371,7 @@ class DemGenerator():
 		outDs = driver.Create(path, self.demWidth, self.demHeight, 1, GDT_Float32)
 
 		if outDs is None:
-		    print 'Could not create', path
+		    print('Could not create', path)
 		    sys.exit(1)
 
 		outDs.SetGeoTransform((0, 1, 0, self.demHeight, 0, -1))
